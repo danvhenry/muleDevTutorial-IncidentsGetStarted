@@ -37,11 +37,6 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 }]]></dw:set-payload>
                 </dw:transform-message>
                 <http:request config-ref="HTTP_Request_Configuration" path="/incidents" method="PUT" doc:name="PagerDuty">
-                    <http:request-builder>
-                        <http:query-param paramName="Accept" value="application/vnd.pagerduty+json;version=2"/>
-                        <http:header headerName="Authorization" value="Token token=Tn2F3J7iDPBmfnGowG5x"/>
-                        <http:header headerName="From" value="danvhenry+training@gmail.com"/>
-                    </http:request-builder>
                 </http:request>
             </processor-chain>
             <processor-chain>
@@ -57,9 +52,6 @@ http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee
 }]]></dw:set-payload>
                 </dw:transform-message>
                 <http:request config-ref="HTTP_Request_Configuration1" path="/incidents" method="POST" doc:name="StatusPage">
-                    <http:request-builder>
-                        <http:header headerName="Authorization" value="OAuth 7d008f10-0705-4bc7-8917-51dc21b61175"/>
-                    </http:request-builder>
                 </http:request>
             </processor-chain>
         </scatter-gather>
