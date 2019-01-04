@@ -16,14 +16,14 @@ version: v1
                 type: array
                 items:
                   required: true
-                  example: '{{"responses" : []}}'
+                  example: '{"responses" : []}'
                   type: string
     body:
       application/json:
         description: Resolves an existing incident in both PagerDuty and StatusPage
         example:
           user:
-            email: danvhenry@gmail.com
+            status: resolved
           pagerDuty:
             incident_id: PUPSHS1
           statusPage:
@@ -34,7 +34,7 @@ version: v1
             required: true
             type: object
             properties:
-              email:
+              status:
                 required: true
                 type: string
           pagerDuty:
@@ -51,7 +51,3 @@ version: v1
               incident_name:
                 required: true
                 type: string
-
-
-
-

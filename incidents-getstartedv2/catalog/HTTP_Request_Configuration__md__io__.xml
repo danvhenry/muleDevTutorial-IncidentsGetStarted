@@ -1,6 +1,6 @@
 <metadata__cache__entry>
   <version>5.2.0.0</version>
-  <connectorName>PagerDuty_Request_Configuration</connectorName>
+  <connectorName>HTTP_Request_Configuration</connectorName>
   <metadataIo class="tree-map">
     <entry>
       <string>PUT:/incidents</string>
@@ -10,7 +10,7 @@
           <org.mule.tooling.metadata.cache.DefaultMetadataCacheEntry>
             <input class="org.mule.common.metadata.DefaultMetaData">
               <payload class="org.mule.tooling.metadata.api.TypeRefMetaDataModel">
-                <connectorName>PagerDuty_Request_Configuration</connectorName>
+                <connectorName>HTTP_Request_Configuration</connectorName>
                 <typeId>PUT:/incidents_request</typeId>
                 <category>DEFAULT</category>
               </payload>

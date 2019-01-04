@@ -1503,5 +1503,5 @@
       </org.mule.common.metadata.DefaultStructuredMetadataModel>
     </entry>
   </types>
-  <connectorName>Statuspage_Request_Configuration</connectorName>
+  <connectorName>HTTP_Request_Configuration1</connectorName>
 </metadata__catalog__entry>

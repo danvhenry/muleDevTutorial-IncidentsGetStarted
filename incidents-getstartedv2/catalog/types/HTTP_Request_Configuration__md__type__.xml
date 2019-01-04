@@ -150,5 +150,5 @@
       </org.mule.common.metadata.DefaultStructuredMetadataModel>
     </entry>
   </types>
-  <connectorName>PagerDuty_Request_Configuration</connectorName>
+  <connectorName>HTTP_Request_Configuration</connectorName>
 </metadata__catalog__entry>

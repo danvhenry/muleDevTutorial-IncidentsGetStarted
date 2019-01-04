@@ -1,19 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<mule xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:api-platform-gw="http://www.mulesoft.org/schema/mule/api-platform-gw" xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:apikit="http://www.mulesoft.org/schema/mule/apikit" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
 http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
 http://www.mulesoft.org/schema/mule/apikit http://www.mulesoft.org/schema/mule/apikit/current/mule-apikit.xsd
 http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
-http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
-http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/schema/mule/api-platform-gw/current/mule-api-platform-gw.xsd">
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
     <http:listener-config name="incidents-getstarted-httpListenerConfig" host="0.0.0.0" port="8081" basePath="api" doc:name="HTTP Listener Configuration"/>
     <apikit:config name="incidents-getstarted-config" raml="incidents-getstarted.raml" consoleEnabled="false" doc:name="Router"/>
-    <http:request-config name="PagerDuty_Request_Configuration" host="pagerduty-getstarted.us-e2.cloudhub.io" port="443" basePath="/api/pagerduty/v1" doc:name="HTTP Request Configuration">
-        <http:raml-api-configuration location="https://anypoint.mulesoft.com/exchange/api/v1/organizations/e735829f-c454-4892-bc40-c5c40277e8e3/assets/e735829f-c454-4892-bc40-c5c40277e8e3/pagerduty-getstarted/1.0.6/api/root"/>
+    <http:request-config name="HTTP_Request_Configuration" protocol="HTTPS" host="pagerduty-getstartedv2.us-e2.cloudhub.io" port="443" basePath="/api/pagerduty/v1" doc:name="HTTP Request Configuration">
+        <http:raml-api-configuration location="https://anypoint.mulesoft.com/exchange/api/v1/organizations/2ef2ac39-a4da-47cf-b3ff-294b7985c3fb/assets/2ef2ac39-a4da-47cf-b3ff-294b7985c3fb/pagerduty-getstarted/1.0.0/api/root"/>
     </http:request-config>
-    <http:request-config name="Statuspage_Request_Configuration" host="statuspage-getstarted.us-e2.cloudhub.io" port="443" basePath="/api/statuspage/v1" doc:name="HTTP Request Configuration">
-        <http:raml-api-configuration location="https://anypoint.mulesoft.com/exchange/api/v1/organizations/e735829f-c454-4892-bc40-c5c40277e8e3/assets/e735829f-c454-4892-bc40-c5c40277e8e3/statuspage-getstarted/1.0.1/api/root"/>
+    <http:request-config name="HTTP_Request_Configuration1" protocol="HTTPS" host="statuspage-getstartedv2.us-e2.cloudhub.io" port="443" basePath="/api/statuspage/v1" doc:name="HTTP Request Configuration">
+        <http:raml-api-configuration location="https://anypoint.mulesoft.com/exchange/api/v1/organizations/2ef2ac39-a4da-47cf-b3ff-294b7985c3fb/assets/2ef2ac39-a4da-47cf-b3ff-294b7985c3fb/statuspage-getstarted/1.0.0/api/root"/>
     </http:request-config>
-    <api-platform-gw:api apiName="groupId:e735829f-c454-4892-bc40-c5c40277e8e3:assetId:incidents-getstarted" version="v1:15602710" flowRef="incidents-getstarted-main" create="true" doc:name="API Autodiscovery"/>
     <flow name="incidents-getstarted-main">
         <http:listener config-ref="incidents-getstarted-httpListenerConfig" path="/incidents/v1/*" doc:name="HTTP"/>
         <apikit:router config-ref="incidents-getstarted-config" doc:name="APIkit Router"/>
@@ -38,16 +36,16 @@ http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/sche
 	}]
 }]]></dw:set-payload>
                 </dw:transform-message>
-                <http:request config-ref="PagerDuty_Request_Configuration" path="/incidents" method="PUT" doc:name="PagerDuty_Resolve">
+                <http:request config-ref="HTTP_Request_Configuration" path="/incidents" method="PUT" doc:name="PagerDuty">
                     <http:request-builder>
-                        <http:header headerName="Authorization" value="Token token=C9V8jZAbKyjJ3_v1yHuz"/>
-                        <http:header headerName="From" value="danvhenry@gmail.com"/>
-                        <http:header headerName="Accept" value="application/vnd.pagerduty+json;version=2"/>
+                        <http:query-param paramName="Accept" value="application/vnd.pagerduty+json;version=2"/>
+                        <http:header headerName="Authorization" value="Token token=Tn2F3J7iDPBmfnGowG5x"/>
+                        <http:header headerName="From" value="danvhenry+training@gmail.com"/>
                     </http:request-builder>
                 </http:request>
             </processor-chain>
             <processor-chain>
-                <dw:transform-message doc:name="Transform Message" metadata:id="a80779f3-d257-44f0-9656-9b0188a39c72">
+                <dw:transform-message doc:name="Transform Message">
                     <dw:set-payload><![CDATA[%dw 1.0
 %output application/json
 ---
@@ -58,9 +56,9 @@ http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/sche
 	}
 }]]></dw:set-payload>
                 </dw:transform-message>
-                <http:request config-ref="Statuspage_Request_Configuration" path="/pages/nrjz5ydqgs0x/incidents.json " method="POST" doc:name="StatusPage_Resolve">
+                <http:request config-ref="HTTP_Request_Configuration1" path="/incidents" method="POST" doc:name="StatusPage">
                     <http:request-builder>
-                        <http:header headerName="authorization" value="OAuth e9366d75-bbbd-4306-b31b-1f20c4fe2433"/>
+                        <http:header headerName="Authorization" value="OAuth 7d008f10-0705-4bc7-8917-51dc21b61175"/>
                     </http:request-builder>
                 </http:request>
             </processor-chain>
@@ -70,7 +68,7 @@ http://www.mulesoft.org/schema/mule/api-platform-gw http://www.mulesoft.org/sche
 %output application/json
 ---
 {
-	"responses": payload
+ responses: payload
 }]]></dw:set-payload>
         </dw:transform-message>
     </flow>
